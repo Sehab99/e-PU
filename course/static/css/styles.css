@@ -1,0 +1,145 @@
+* {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+h2 {
+	text-align: center;
+	font-weight: 700;
+	color: #FFF;
+	background-color: #9b4dca;
+	border-radius: 0.5rem;
+	margin-left: 0.5rem;
+}
+
+h5 {
+	font-size: 2rem;
+	color: black;
+	font-weight: 550;
+}
+
+p {
+	font-size: 1.3rem;
+}
+
+iframe {
+	width: 98%;
+	height: 98%;
+}
+
+footer {
+	width: 100%;
+	height: 15rem;
+	padding-top: 2rem;
+	display: flex;
+	justify-content: space-evenly;
+	color: #FFF;
+	background-color: lightcoral;
+}
+
+.foot {
+	font-size: 2.5rem;
+}
+
+.nav {
+	background: #FFF;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	padding: 1rem 4rem 0;
+}
+
+.list {
+	list-style: none;
+	padding-left: 0;
+	display: flex;
+	margin-bottom: 0;
+}
+
+.button {
+	margin-bottom: 0;
+}
+
+.logo {
+	width: 140px;
+	height: initial;
+}
+
+.textField {
+	margin-bottom: 2rem;
+}
+
+.box {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.boxTwo {
+	width: 60%;
+	margin: 0 20%;
+}
+
+.btn {
+	font-size: 1.5rem;
+}
+
+.card {
+	width: 25rem;
+	display: inline-block;
+	margin: 2rem;
+	border-radius: 0.5rem;
+}
+
+.card-img-top {
+	border-radius: 0.5rem;
+}
+
+.week_name {
+	display: block;
+	border: solid #9b4dca 1px;
+	color: white;
+	background-color: #9b4dca;
+	margin: 1rem;
+	padding-left: 0.5rem;
+	border-radius: 0.5rem;
+}
+
+.topic {
+	display: block;
+	color: black;
+	border: solid grey 1px;
+	border-radius: 0.5rem;
+	margin: 0.5rem 1rem 0.5rem 2.5rem;
+	padding-left: 0.5rem;
+}
+
+.add {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.grid_view {
+	display: grid;
+	grid-template-columns: 25vw 75vw;
+	grid-template-rows: 15vh 85vh;
+}
+
+.nav_grid {
+	grid-column: 1 / -1;
+}
+
+.list_grid {
+	overflow: auto;
+}
+
+.video_grid {
+	padding: 1rem 2rem;
+}
+
+#front {
+	width: 100%;
+}

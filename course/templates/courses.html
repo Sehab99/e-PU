@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Courses{% endblock %}
+
+{% block body  %}
+
+	<nav class="nav">
+		<a href="/"><img class="logo" src="{% static 'images/e-PU.png' %}"></a>
+		<ul class="list">
+			<li>
+				<button class="button" onclick="document.getElementById('addCourse').style.display='block' " style="margin-right: 2rem;">Add Course</button>
+				<div class="modal" id="addCourse">
+				  	<form class="modal-content animate" action="{% url 'courses' %}" method="POST">
+						{% csrf_token %}
+					    <div class="imgcontainer">
+					      <span onclick="document.getElementById('addCourse').style.display='none'" class="close" title="Close">&times;</span>
+					      <h2>New Course</h2>
+					    </div>
+
+					    <div class="container">
+							{{ form.name.errors }}
+					        <label for="{{ form.name.id_for_label }}"><b>Course Name</b></label>
+							{{ form.name }}
+
+							<label for="{{ form.img_url.id_for_label }}"><b>Image Link</b></label>
+							{{ form.img_url }}
+
+					      	<label for="{{ form.description.id_for_label }}"><b>Discription</b></label>
+					      	{{ form.description }}
+
+					        <button class="button-primary" type="submit" value="submit">Submit</button>
+					    </div>
+				  	</form>
+				</div>
+			</li>
+			<li><span style="font-size: 2rem;">Hi, Faculty Name</span></li>
+			<li>
+				<a class="button button-clear" href="/">
+					<i style="font-size: 2rem;" class="fas fa-sign-out-alt"></i>
+				</a>
+			</li>
+		</ul>
+	</nav>
+
+	<div class="box">
+        {% for course in courses %}
+			<div class="card">
+			    <img src="{{ course.img_url }}" class="card-img-top" alt="Course Image">
+			    <div class="card-body">
+			    	<h5 class="card-title">{{ course.name }}</h5>
+			    	<p class="card-text">{{ course.description }}</p>
+			    	<a href="{% url 'topics' course.id %}" class="btn btn-primary">Open {{ course.name }}</a>
+			  	</div>
+			</div>
+        {% endfor %}
+	</div>
+
+	<script>
+		var modal = document.getElementById('addCourse');
+
+		window.onclick = function(event) {
+		    if (event.target == modal) {
+		        modal.style.display = "none";
+		    }
+		}
+	</script>
+
+{% endblock %}
