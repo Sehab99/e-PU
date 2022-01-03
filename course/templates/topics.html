@@ -5,74 +5,58 @@
 
 {% block body  %}
 <nav class="nav">
-		<a href="/"><img class="logo" src="{% static 'images/e-PU.png' %}"></a>
-		<ul class="list">
-			<li><span style="font-size: 2rem;">Hi, Faculty Name</span></li>
-			<li>
-				<a class="button button-clear" href="/">
-					<i class="fas fa-sign-out-alt" style="font-size: 2rem;"></i>
-				</a>
-			</li>
-		</ul>
-	</nav>
+    <a href="/"><img class="logo" src="{% static 'images/e-PU.png' %}"></a>
+    <ul class="list">
+        <li><span style="font-size: 2rem;">Hi, {{request.user}}</span></li>
+        <li>
+            <a class="button button-clear" href="{% url 'logout' %}">
+                <i class="fas fa-sign-out-alt" style="font-size: 2rem;"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
 
-	<div class="boxTwo">
-		<h2>{{ courses.name }}</h2>
-		<div class="add">
-			<button class="button-primary" onclick="document.getElementById('addWeek').style.display='block' ">Add Week</button>
-				<div class="modal" id="addWeek">
-				  	<form action="/" class="modal-content animate" method="post">
-					    <div class="imgcontainer">
-					      <span class="close" onclick="document.getElementById('addWeek').style.display='none'" title="Close">&times;</span>
-					    </div>
+<div class="boxTwo">
+    <h2>{{ courses.name }}</h2>
+    <div class="add">
+        <button class="button-primary" onclick="document.getElementById('addTopic').style.display='block' ">Add Topic
+        </button>
+        <div class="modal" id="addTopic">
+            <form class="modal-content animate" action="{% url 'topics' courses.id %}" method="POST">
+                {% csrf_token %}
+                <div class="imgcontainer">
+                    <span onclick="document.getElementById('addtopic').style.display='none'" class="close"
+                          title="Close">&times;</span>
+                </div>
 
-					    <div class="container">
-					      <label for="wname"><b>Week Name</b></label>
-					      <input id="wname" placeholder="Enter Week name" required type="text">
+                <div class="container">
+                    {{ form.topicName.errors }}
+                    <label for="form.topicName.id_for_label"><b>Topic Name</b></label>
+                    {{form.topicName}}
 
-					      <button class="button-primary" type="submit" value="submit">Submit</button>
-					    </div>
-				  	</form>
-				</div>
+                    {{ form.link.errors }}
+                    <label for="{{ form.link.id_for_label }}"><b>Topic Link</b></label>
+                    {{form.link}}
+                    {{form.courses}}
+                    <button class="button-primary" type="submit" value="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
-			<button class="button-primary" onclick="document.getElementById('addTopic').style.display='block' ">Add Topic</button>
-				<div class="modal" id="addTopic">
-				  	<form action="{% url 'topics' courses.id %}" class="modal-content animate" method="POST">
-						{% csrf_token %}
-					    <div class="imgcontainer">
-					      <span class="close" onclick="document.getElementById('addtopic').style.display='none'" title="Close">&times;</span>
-					    </div>
+    {% for topic in topics %}
+    <a class="topic" href="{% url 'video' courses.id topic.id %}">{{ topic.topicName }}</a>
+    {% endfor %}
 
-					    <div class="container">
-							{{ form.topicName.errors }}
-					      	<label for="form.topicName.id_for_label"><b>Topic Name</b></label>
-					      	{{form.topicName}}
+</div>
 
-							{{ form.link.errors }}
-					      	<label for="{{ form.link.id_for_label }}"><b>Topic Link</b></label>
-					      	{{form.link}}
-							{{form.courses}}
-					      	<button class="button-primary" type="submit" value="submit">Submit</button>
-					    </div>
-				  	</form>
-				</div>
-		</div>
-
-		<label class="week_name">Week 1</label>
-		{% for topic in topics %}
-			<a class="topic" href="{% url 'video' courses.id topic.id %}">{{ topic.topicName }}</a>
-		{% endfor %}
-
-	</div>
-
-	<script>
-		var modalWeek = document.getElementById('addWeek');
-		var modalTopic = document.getElementById('addTopic');
+<script>
+		var modal = document.getElementById('addTopic');
 		window.onclick = function(event) {
-		    if (event.target == modalWeek || event.target == modalTopic) {
-		        modalWeek.style.display = "none";
-		        modalTopic.style.display = "none";
+		    if (event.target == modal) {
+		        modal.style.display = "none";
 		    }
 		}
-	</script>
+
+</script>
 {% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Registration{% endblock %}
+
+{% block body  %}
+<nav class="nav">
+    <a href="/"><img class="logo" src="{% static 'images/e-PU.png' %}"></a>
+    <ul class="list">
+        <li>Already have an account?
+            <a class="button" href="{% url 'index' %}">Login</a>
+        </li>
+    </ul>
+</nav>
+<div class="boxTwo">
+    <h2>Registration</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <fieldset>
+            {{ form.username.errors }}
+            {{ form.username.label }}
+            {{ form.username }}
+<!--
+            <label for="ageRangeField">User type</label>
+            <select class="textField">
+                <option value="3">Student</option>
+                <option value="2">Faculty</option>
+                <option value="1">Admin</option>
+            </select>-->
+            {{ form.first_name.errors }}
+            {{ form.first_name.label }}
+            {{ form.first_name }}
+
+            {{ form.last_name.errors }}
+            {{ form.last_name.label }}
+            {{ form.last_name }}
+
+            {{ form.email.errors }}
+            {{ form.email.label }}
+            {{ form.email }}
+
+            {{ form.password1.errors }}
+            {{ form.password1.label }}
+            {{ form.password1 }}
+
+            {{ form.password2.errors }}
+            {{ form.password2.label }}
+            {{ form.password2 }}
+            {{ form.password2.errors }}
+            <input class="button-primary" type="submit" value="submit">
+            <input class="button-primary button-outline" type="reset" value="Clear">
+        </fieldset>
+    </form>
+</div>
+{% endblock %}

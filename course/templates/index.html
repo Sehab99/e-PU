@@ -21,7 +21,8 @@
             <button class="button" onclick="document.getElementById('id01').style.display='block' ">Login</button>
 
             <div class="modal" id="id01">
-                <form class="modal-content animate" action="/" method="post">
+                <form class="modal-content animate" action="" method="POST">
+                    {% csrf_token %}
                     <div class="imgcontainer">
                         <span onclick="document.getElementById('id01').style.display='none'" class="close"
                               title="Close">&times;</span>
@@ -29,16 +30,21 @@
                     </div>
 
                     <div class="container">
-                        <label for="uname"><b>Username</b></label>
-                        <input type="text" placeholder="Enter Username" id="uname" required>
+                        <label for="username"><b>Username</b></label>
+                        <input type="text" name="username" placeholder="Enter Username" id="username" required>
 
-                        <label for="psw"><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" id="psw" required>
-
-                        <button type="submit">Login</button>
+                        <label for="password"><b>Password</b></label>
+                        <input type="password" name="password" placeholder="Enter Password" id="password" required>
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                        <input class="button-primary" type="submit" value="Login">
                     </div>
                 </form>
             </div>
+        </li>
+        <li>
+            <a class="button" style="margin-left: 1rem;" href="{% url 'register' %}">Register</a>
         </li>
     </ul>
 </nav>

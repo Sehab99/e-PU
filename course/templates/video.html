@@ -9,9 +9,9 @@
         <nav class="nav">
             <a href="/"><img class="logo" src="{% static 'images/e-PU.png' %}"></a>
             <ul class="list">
-                <li><span style="font-size: 2rem;">Hi, Student Name</span></li>
+                <li><span style="font-size: 2rem;">Hi, {{request.user}}</span></li>
                 <li>
-                    <a class="button button-clear" href="/">
+                    <a class="button button-clear" href="{% url 'logout' %}">
                         <i style="font-size: 2rem;" class="fas fa-sign-out-alt"></i>
                     </a>
                 </li>
@@ -20,9 +20,8 @@
     </div>
 
     <div class="list_grid">
-        <h2 style="color: black;">{{ courses.name }}</h2>
+        <h2>{{ courses.name }}</h2>
 
-        <label class="week_name">Week 1</label>
         {% for topic in topics %}
 			<a class="topic" href="{% url 'video' courses.id topic.id %}">{{ topic.topicName }}</a>
 		{% endfor %}
